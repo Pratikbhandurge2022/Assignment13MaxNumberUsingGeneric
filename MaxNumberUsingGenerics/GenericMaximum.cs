@@ -4,41 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace MaxNumberUsingGenerics
 {
     internal class GenericMaximum<T> where T : IComparable
     {
-        public T firstValue, secondValue, thirdValue;
+        public T[] value;
 
-        public GenericMaximum(T firstValue, T secondValue, T thirdValue)
+        public GenericMaximum(T[] value)
         {
-            this.firstValue = firstValue;
-            this.secondValue = secondValue;
-            this.thirdValue = thirdValue;
+            this.value = value;
         }
 
-        public static T MaxValue(T firstValue, T secondValue, T thirdValue)
+        public T[] Sort(T[] values)
         {
-            if (firstValue.CompareTo(secondValue) > 0 && firstValue.CompareTo(thirdValue) > 0)
-            {
-                return firstValue;
-            }
-            else if (secondValue.CompareTo(firstValue) > 0 && secondValue.CompareTo(thirdValue) > 0)
-            {
-                return secondValue;
-            }
-            else
-            {
-                return thirdValue;
-            }
+            Array.Sort(values);
+            return values;
         }
 
-        public T MaxMethod()
+        public T MaxValue(params T[] values)
         {
-            T max = GenericMaximum<T>.MaxValue(this.firstValue, this.secondValue, this.thirdValue);
-            return max;
+            var sorted_values = Sort(values);
+            return sorted_values[^1];
         }
 
+        //public T MaxMethhod()
+        //{
+        //    var max = MaxValue(this.value);
+        //    return max;
+        //}
+
+        public void PrintMaxValue()
+        {
+            var max = MaxValue(this.value);
+            Console.WriteLine("Max value is " + max);
+        }
     }
 }
