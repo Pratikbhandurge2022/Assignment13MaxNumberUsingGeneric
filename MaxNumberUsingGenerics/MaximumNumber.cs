@@ -13,16 +13,16 @@ namespace MaxNumberUsingGenerics
             int temp;
             if (num1.CompareTo(num2) > 0 && num1.CompareTo(num3) > 0)
             {
-                return num1;
+                temp = num2;
+                num2 = num1;
+                num1 = temp;
+
+                return num2;
             }
 
             else if (num2.CompareTo(num1) > 0 && num2.CompareTo(num3) > 0)
             {
-                temp = num1;
-                num1 = num2;
-                num2 = temp;
-
-                return num1;
+                return num2;
             }
 
             else
@@ -31,7 +31,7 @@ namespace MaxNumberUsingGenerics
                 num1 = num3;
                 num3 = temp;
 
-                return num1;
+                return num2;
             }
         }
     }
